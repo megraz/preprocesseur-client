@@ -1,5 +1,6 @@
 import {Compteur} from './compteur';
 import { TodoAjax } from './todo-ajax';
+import * as $ from 'jquery';
 
 const compteur = new Compteur();
 const para = document.querySelector('#para');
@@ -11,4 +12,12 @@ document.querySelector('#increment')
 });
 
 const todoAjax = new TodoAjax();
-todoAjax.getAllTodos().then((response) => console.log(response));
+todoAjax.getAllTodos().then(function(response) {
+    console.log(response);
+    let todo = $('#todo');
+    for (let resp of response){
+        let li = $('<li>'+ resp +'</li>');
+    todo.append(li);
+    }
+
+});
